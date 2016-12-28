@@ -1,0 +1,57 @@
+﻿@model Blog.Web.Entities.Post
+
+<div class="container" style="padding-top: 50px;">
+    <div class="row">
+        <form id="createPostForm" class="form-horizontal" action="/Post/Create" method="post">
+            <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Tytuł</label>
+                <div class="col-xs-10">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Pod tytuł</label>
+                <div class="col-xs-10">
+                    @Html.TextBoxFor(m => m.SubTitle, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Napisał</label>
+                <div class="col-xs-10">
+                    @Html.TextBoxFor(m => m.Writter, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="example-datetime-local-input" class="col-xs-2 col-form-label">Data i godzina</label>
+                <div class="col-xs-10">
+                    @Html.TextBoxFor(m => m.Date, new { @class = "form-control", type = "datetime-local" })
+                </div>
+            </div>
+
+            @Html.TextAreaFor(m => m.Content, new { id = "Content" })
+
+            <div class="row" style="margin: 20px;">
+                <button type="submit" class="btn btn-primary pull-right">Zapisz</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        
+        $(document).ready(function () {
+            $('#Content')
+                .summernote({
+                    height: 300, // set editor height
+                    minHeight: null, // set minimum height of editor
+                    maxHeight: null, // set maximum height of editor
+                    focus: true
+                });
+        });
+    </script>
+}

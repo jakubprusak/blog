@@ -1,0 +1,25 @@
+﻿@model List<Blog.Web.Entities.Post>
+
+<div id="postList" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    
+    @foreach (var post in Model)
+    {
+        <div class="post-preview" data-id="@post.PostId">
+            <a href="/Post/Index/@post.PostId">
+                <h2 class="post-title">
+                    @Html.Raw(post.Title)
+                </h2>
+                <h3 class="post-subtitle">
+                    @Html.Raw(post.SubTitle)
+                </h3>
+            </a>
+            <p class="post-meta">Napisany przez <a href="/Home/About">@post.Writter</a> w dniu @post.Date.ToShortDateString()</p>
+        </div>
+        <hr>
+    }
+        <ul class="pager">
+            <li class="next">
+                <a href="#">Starsze wpisy &rarr;</a>
+            </li>
+        </ul>
+</div>

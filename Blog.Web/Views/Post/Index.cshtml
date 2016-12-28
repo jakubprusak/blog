@@ -1,0 +1,26 @@
+﻿@model Blog.Web.Entities.Post 
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('/img/post-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>@Html.Raw(Model.Title)</h1>
+                    <h2 class="subheading">@Html.Raw(Model.SubTitle)</h2>
+                    <span class="meta">Napisany przez <a href="#">@Html.Raw(Model.Writter)</a> on @Html.Raw(Model.Date.ToShortDateString())</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                @Html.Raw(Model.Content)
+            </div>
+        </div>
+    </div>
+</article>
