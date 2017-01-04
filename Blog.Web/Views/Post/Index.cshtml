@@ -1,14 +1,14 @@
 ﻿@model Blog.Web.Entities.Post 
 <!-- Page Header -->
 <!-- Set your background image for this header on the line below. -->
-<header class="intro-header" style="background-image: url('/img/post-bg.jpg')">
+<header class="intro-header" style="background-image: url('@Model.MainImageUri');box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3); ">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <h1>@Html.Raw(Model.Title)</h1>
                     <h2 class="subheading">@Html.Raw(Model.SubTitle)</h2>
-                    <span class="meta">Napisany przez <a href="#">@Html.Raw(Model.Writter)</a> on @Html.Raw(Model.Date.ToShortDateString())</span>
+                    <span class="meta">Napisany przez <a href="#">@Html.Raw(Model.Writter)</a> w dniu @Html.Raw(Model.Date.ToShortDateString())</span>
                 </div>
             </div>
         </div>
@@ -21,6 +21,12 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 @Html.Raw(Model.Content)
             </div>
+            <ul class="pager">
+                <li class="next">
+                    <a href="/">Powrót do listy wpisów</a>
+                </li>
+            </ul>
         </div>
     </div>
 </article>
+

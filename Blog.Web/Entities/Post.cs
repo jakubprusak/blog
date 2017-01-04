@@ -7,7 +7,11 @@ namespace Blog.Web.Entities
     {
         public int PostId { get; set; }
 
+        public string MainImageUri { get; set; }
+
         public string Title { get; set; }
+
+        public string TitleSlug { get; set; }
 
         public string SubTitle { get; set; }
 
@@ -19,5 +23,7 @@ namespace Blog.Web.Entities
 
         [AllowHtml]
         public string Content { get; set; }
+
+        public bool Published { get; set; }
     }
 }

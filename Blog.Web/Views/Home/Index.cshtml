@@ -15,6 +15,24 @@
  <!-- Main Content -->
 <div class="container">
     <div class="row">
-        @Html.Action("PostList", "Post")
+
+        <div id="postList" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div id="posts">
+                @Html.Action("PostList", "Post")
+            </div>
+            <ul class="pager">
+                <li class="next">
+                    <a id="getOlderPostsButton" style="cursor: pointer">Starsze wpisy &rarr;</a>
+                </li>
+            </ul>
+        </div>
+
     </div>
 </div>
+
+
+@section scripts{
+<script src="~/ScriptApp/Post/postList.js"></script>
+}
+
+

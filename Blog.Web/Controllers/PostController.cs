@@ -4,14 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Blog.Web.Entities;
+using Blog.Web.Helper;
 
 namespace Blog.Web.Controllers
 {
-    public class PostController : Controller
+    public class PostController : BaseController
     {
-        private int _numberOfPostToFetch = 5;
+        private int _numberOfPostToFetch = 2;
         // GET: Post
-        public ActionResult Index(int id)
+        public ActionResult Index(int id, string title = null)
         {
             Post post = null;
             using (var db = new BlogContext())
@@ -22,6 +23,12 @@ namespace Blog.Web.Controllers
             }
 
             return View(post);
+        }
+
+        public ActionResult Preview(Post post)
+        {
+
+            return View("Index", post);
         }
 
         [HttpGet]
@@ -43,6 +50,7 @@ namespace Blog.Web.Controllers
                 post.Date = DateTime.Now;
             }
 
+
             return View(post);
         }
 
@@ -50,23 +58,24 @@ namespace Blog.Web.Controllers
         public ActionResult Create(Post post)
         {
             post.DateAdded = DateTime.Now;
+            post.TitleSlug = SlugGenerator.GenerateSlug(post.Title);
             using (var db = new BlogContext())
             {
                 db.Posts.Add(post);
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Index",post.Title);
+            return RedirectToAction("Index",new {id =  post.PostId});
         }
 
         [HttpGet]
-        public PartialViewResult PostList(int lastId = 0)
+        public PartialViewResult PostList(int id = 0)
         {
             var posts = new List<Post>();
 
             using (var db = new BlogContext())
             {
-                posts = db.Posts.Where(a => a.PostId > lastId).Take(_numberOfPostToFetch).ToList();
+                posts = db.Posts.Where(a => a.PostId > id && a.Published).Take(_numberOfPostToFetch).ToList();
             }
 
             return PartialView("_postListPartial", posts);
